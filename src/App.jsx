@@ -126,6 +126,98 @@ setReservations([]);
             />
           </div>
         </div>
+          {/* Sección Próximamente */}
+<section className="mt-5">
+  <div className="d-flex align-items-center justify-content-between mb-3">
+    <h3 className="fw-bold text-light mb-0">
+      🍿 Próximamente en CineStar
+    </h3>
+
+    <span className="badge bg-danger px-3 py-2">
+      PRÓXIMOS ESTRENOS
+    </span>
+  </div>
+
+  <div className="row g-4">
+
+    {/* El Corazón de la Bestia */}
+    <div className="col-md-6">
+      <div className="card bg-dark text-light border-secondary h-100 shadow overflow-hidden">
+        <div className="position-relative">
+          <img
+            src="/corazon-bestia.jpg"
+            className="card-img-top"
+            alt="El Corazón de la Bestia"
+            style={{
+              height: "330px",
+              objectFit: "cover",
+              objectPosition: "center 25%"
+            }}
+          />
+
+          <span className="position-absolute top-0 start-0 m-3 badge bg-danger px-3 py-2">
+            PRÓXIMAMENTE
+          </span>
+        </div>
+
+        <div className="card-body p-4">
+          <h4 className="fw-bold mb-2">
+            El Corazón de la Bestia
+          </h4>
+
+          <p className="text-secondary mb-3">
+            Suspenso / Supervivencia
+          </p>
+
+          <div className="border-top border-secondary pt-3">
+            <span className="text-warning fw-semibold">
+              🎬 Próximamente en cines
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Resident Evil */}
+    <div className="col-md-6">
+      <div className="card bg-dark text-light border-secondary h-100 shadow overflow-hidden">
+        <div className="position-relative">
+          <img
+            src="/resident-evil.jpg"
+            className="card-img-top"
+            alt="Resident Evil: Noche Cero"
+            style={{
+              height: "330px",
+              objectFit: "cover",
+              objectPosition: "center 25%"
+            }}
+          />
+
+          <span className="position-absolute top-0 start-0 m-3 badge bg-danger px-3 py-2">
+            PRÓXIMAMENTE
+          </span>
+        </div>
+
+        <div className="card-body p-4">
+          <h4 className="fw-bold mb-2">
+            Resident Evil: Noche Cero
+          </h4>
+
+          <p className="text-secondary mb-3">
+            Terror / Supervivencia
+          </p>
+
+          <div className="border-top border-secondary pt-3">
+            <span className="text-warning fw-semibold">
+              🎬 Próximamente en cines
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
 
         {selectedMovie && (
           <MovieDetail
