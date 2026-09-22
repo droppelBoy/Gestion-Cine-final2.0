@@ -56,10 +56,10 @@ function App() {
   const handleRemoveReservation = (idReserva) => {
     setReservations((prev) => prev.filter((item) => item.idReserva !== idReserva));
   };
-   const handleCheckout = () =>{
-alerta('Compra confirmada con exito! Disfruta de tu Funcion');
-setReservations([]);
-   }
+  const handleCheckout = () => {
+  alert('¡Compra confirmada con éxito! Disfruta de tu función 🎬🍿');
+  setReservations([]);
+};
 
  const filteredMovies = movies.filter((movie) => {
     const titleMatch = movie?.title?.toLowerCase().includes(search.toLowerCase());
