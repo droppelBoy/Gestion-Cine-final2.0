@@ -214,6 +214,40 @@ setReservations([]);
 
   </div>
 </section>
+          {/* Footer CineStar */}
+<footer
+  className="mt-5 pt-4 pb-3 text-center"
+  style={{
+    borderTop: "2px solid #dc3545",
+    background: "rgba(10, 10, 15, 0.75)",
+    borderRadius: "12px"
+  }}
+>
+  <h4 className="fw-bold text-danger mb-2">
+    🎬 CineStar
+  </h4>
+
+  <p className="text-light mb-2">
+    Tu cine, tus historias.
+  </p>
+
+  <p className="text-secondary small mb-3">
+    Cartelera &nbsp;•&nbsp; Próximos estrenos &nbsp;•&nbsp; Reserva de entradas
+  </p>
+
+  <div
+    className="mx-auto mb-3"
+    style={{
+      width: "60px",
+      height: "2px",
+      background: "#dc3545"
+    }}
+  ></div>
+
+  <p className="text-secondary small mb-0">
+    © 2026 CineStar · Todos los derechos reservados
+  </p>
+</footer>
 
         {selectedMovie && (
           <MovieDetail
