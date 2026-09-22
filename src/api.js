@@ -17,15 +17,15 @@ const moviesData = [
     image: "https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_FMjpg_UX1000_.jpg",
     showtimes: ["15:00", "19:00", "22:30"]
   },
-  {
-    id: 3,
-    title: "Avengers: Doomsday",
-    genre: "Acción / Aventura",
-    price: 5500,
-    synopsis: "Los Héroes Más Poderosos de la Tierra enfrentan su mayor amenaza hasta la fecha contra el implacable Doctor Doom a través del multiverso.",
-    image: "/doomsday.jpg",
-    showtimes: ["16:00", "20:00", "23:00"]
-  },
+ {
+  id: 3,
+  title: "Interstellar",
+  genre: "Ciencia Ficción / Aventura",
+  price: 5500,
+  synopsis: "Un grupo de exploradores viaja a través del espacio en busca de un nuevo hogar para la humanidad.",
+  image: "/interstellar.jpg",
+  showtimes: ["16:00", "20:00", "23:00"]
+},
   {
     id: 4,
     title: "Pinocho: La Película",
