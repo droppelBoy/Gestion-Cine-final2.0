@@ -128,15 +128,11 @@ setReservations([]);
         </div>
           {/* Sección Próximamente */}
 <section className="mt-5">
-  <div className="d-flex align-items-center justify-content-between mb-3">
-    <h3 className="fw-bold text-light mb-0">
-      🍿 Próximamente en CineStar
-    </h3>
-
-    <span className="badge bg-danger px-3 py-2">
-      PRÓXIMOS ESTRENOS
-    </span>
-  </div>
+  <div className="mb-3">
+  <h3 className="fw-bold text-light mb-0">
+    🍿 Próximamente en CineStar
+  </h3>
+</div>
 
   <div className="row g-4">
 
