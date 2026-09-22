@@ -219,8 +219,10 @@ setReservations([]);
   className="mt-5 pt-4 pb-3 text-center"
   style={{
     borderTop: "2px solid #dc3545",
-    background: "rgba(10, 10, 15, 0.75)",
-    borderRadius: "12px"
+    background: "rgba(5, 5, 10, 0.88)",
+    width: "100vw",
+    marginLeft: "calc(50% - 50vw)",
+    marginRight: "calc(50% - 50vw)"
   }}
 >
   <h4 className="fw-bold text-danger mb-2">
