@@ -210,6 +210,14 @@ function App() {
           <p className="text-secondary mb-3">
             Terror / Supervivencia
           </p>
+          <div className="d-flex gap-2 flex-wrap mb-3">
+  <span className="badge bg-secondary">
+    🕒 1h 34min
+  </span>
+  <span className="badge bg-secondary">
+    🔞 +14
+  </span>
+</div>
 
           <div className="border-top border-secondary pt-3">
             <span className="text-warning fw-semibold">
