@@ -92,6 +92,9 @@ setReservations([]);
         <div className="row">
           <div className="col-lg-8">
             <SearchBar search={search} handleSearch={handleSearch} />
+            <h4 className="fw-bold text-light mt-4 mb-3">
+  🎬 Películas en Cartelera
+</h4>
 
             {loading ? (
               <div className="text-center py-5">
