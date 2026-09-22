@@ -5,7 +5,16 @@ function MovieCard({ movie, onViewDetail }) {
         src={movie.image}
         className="card-img-top"
         alt={movie.title}
-        style={{ height: '280px', objectFit: 'cover' }}
+        style={{
+  height: '280px',
+  objectFit: 'cover',
+  objectPosition:
+    movie.title === 'Spider-Man: Un Nuevo Día' ? 'center 35%' :
+    movie.title === 'Avengers: Endgame (Encore)' ? 'center 30%' :
+    movie.title === 'Interstellar' ? 'center 15%' :
+    movie.title === 'Pinocho: La Película' ? 'center 25%' :
+    'center'
+}}
         onError={(e) => {
           e.target.onerror = null;
           e.target.src = 'https://via.placeholder.com/300x400?text=Sin+Imagen';
