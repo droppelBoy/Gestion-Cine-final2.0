@@ -1,0 +1,139 @@
+
+import { useState, useEffect } from 'react';
+import { fetchMovies } from './api';
+import SearchBar from './components/SearchBar';
+import MovieCard from './components/MovieCard';
+import MovieDetail from './components/MovieDetail';
+import ReservationCart from './components/ReservationCart';
+
+
+function App() {
+  const [movies, setMovies] = useState([]);
+  const [search, setSearch] = useState('');
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [loading, setLoading] = useState(true);
+//Reservas leidas desde el localstorge
+   const [reservations, setReservations] = useState(() => {
+  const saved = localStorage.getItem('cine_reservations');
+  return saved ? JSON.parse(saved) : [];
+});
+
+//Guardado en localstorge automaticamente
+  useEffect(() => {
+    localStorage.setItem('cine_reservations', JSON.stringify(reservations));
+  }, [reservations]);
+
+  useEffect(() => {
+    fetchMovies().then((data) => {
+      setMovies(data);
+      setLoading(false);
+    });
+  }, []);
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const handleViewDetail = (movie) => {
+    setSelectedMovie(movie);
+  };
+
+  const handleCloseDetail = () => {
+    setSelectedMovie(null);
+  };
+
+  const handleBookShowtime = (movie, time) => {
+    const newReservation = {
+      idReserva: Date.now(),
+      title: movie.title,
+      price: movie.price || 4500, 
+      selectedTime: time
+    };
+    setReservations((prev) => [...prev, newReservation]);
+    setSelectedMovie(null);
+  };
+
+  const handleRemoveReservation = (idReserva) => {
+    setReservations((prev) => prev.filter((item) => item.idReserva !== idReserva));
+  };
+   const handleCheckout = () =>{
+alerta('Compra confirmada con exito! Disfruta de tu Funcion');
+setReservations([]);
+   }
+
+ const filteredMovies = movies.filter((movie) => {
+    const titleMatch = movie?.title?.toLowerCase().includes(search.toLowerCase());
+    const genreMatch = movie?.genre?.toLowerCase().includes(search.toLowerCase());
+    return titleMatch || genreMatch;
+  });
+
+  return (
+ 
+    <div 
+  className="min-vh-100 py-4 text-light" 
+  data-bs-theme="dark"
+  style={{
+    backgroundImage: "linear-gradient(rgba(10, 12, 18, 0.55), rgba(10, 12, 18, 0.70)), url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1920&q=80')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundAttachment: "fixed",
+    backgroundRepeat: "no-repeat"
+  }}
+>
+  
+
+      
+        <div className="container">
+          <header className="mb-4 text-center">
+            <h1 className="fw-bold text-danger display-5">CineStar</h1>
+            <p className="text-secondary fs-6">Cartelera de estrenos y reserva de entradas</p>
+          </header>
+
+        <div className="row">
+          <div className="col-lg-8">
+            <SearchBar search={search} handleSearch={handleSearch} />
+
+            {loading ? (
+              <div className="text-center py-5">
+                <div className="spinner-border text-primary" role="status">
+                  <span className="visually-hidden">Cargando...</span>
+                </div>
+              </div>
+            ) : (
+              <div className="row g-3">
+                {filteredMovies.map((movie) => (
+                  <div key={movie.id} className="col-md-6">
+                    <MovieCard movie={movie} onViewDetail={handleViewDetail} />
+                  </div>
+                ))}
+                {filteredMovies.length === 0 && (
+                  <div className="col-12 text-center text-muted py-4">
+                    No se encontraron películas que coincidan con la búsqueda.
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
+          <div className="col-lg-4 mt-4 mt-lg-0">
+            <ReservationCart
+              reservations={reservations}
+              onRemoveReservation={handleRemoveReservation}
+              onCheckout={handleCheckout}
+            />
+          </div>
+        </div>
+
+        {selectedMovie && (
+          <MovieDetail
+            movie={selectedMovie}
+            closeDetail={handleCloseDetail}
+            bookShowtime={handleBookShowtime}
+          />
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default App;
