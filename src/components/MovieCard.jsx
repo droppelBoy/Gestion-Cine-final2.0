@@ -1,4 +1,4 @@
-function MovieCard({ movie, onViewDetail }) {
+function MovieCard({ movie, onViewDetail, onSelectSeats }) {
   return (
     <div className="card h-100 shadow border-secondary bg-dark text-light">
       <img
@@ -50,6 +50,12 @@ function MovieCard({ movie, onViewDetail }) {
           className="btn btn-outline-danger mt-auto w-100 fw-semibold"
           onClick={() => onViewDetail(movie)}
         >
+          <button 
+  className="btn btn-danger w-100 mt-2 fw-bold"
+  onClick={() => onSelectSeats(movie)}
+>
+  🎟️ Seleccionar Asientos
+</button>
           Ver Detalles y Horarios
         </button>
       </div>
