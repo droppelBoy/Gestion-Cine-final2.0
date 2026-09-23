@@ -109,7 +109,11 @@ function App() {
               <div className="row g-3">
                 {filteredMovies.map((movie) => (
                   <div key={movie.id} className="col-md-6">
-                    <MovieCard movie={movie} onViewDetail={handleViewDetail} />
+                    <MovieCard 
+                movie={movie} 
+                onViewDetail={handleViewDetail} 
+                onSelectSeats={(pelicula) => setPeliculaParaReservar(pelicula)}
+/>
                   </div>
                 ))}
                 {filteredMovies.length === 0 && (
