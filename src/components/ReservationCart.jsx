@@ -1,5 +1,7 @@
+import React from 'react';
+
 function ReservationCart({ reservations, onRemoveReservation, onCheckout }) {
-  const total = reservations.reduce((acc, item) => acc + (item.price || 0), 0);
+  const total = reservations.reduce((acc, item) => acc + (item.price || item.total || 0), 0);
 
   return (
     <div
@@ -30,7 +32,6 @@ function ReservationCart({ reservations, onRemoveReservation, onCheckout }) {
       </div>
 
       <div className="card-body">
-
         {reservations.length === 0 ? (
           /* Carrito vacío */
           <div className="text-center py-4">
@@ -53,58 +54,74 @@ function ReservationCart({ reservations, onRemoveReservation, onCheckout }) {
             </h6>
 
             <p className="text-secondary small mb-0">
-              Selecciona una película y elige tu horario favorito.
+              Selecciona una película y elige tus butacas u horario favorito.
             </p>
           </div>
         ) : (
           <>
-            {/* Reservas */}
+            {/* Lista de Reservas */}
             <div className="mb-3">
-              {reservations.map((item) => (
-                <div
-                  key={item.idReserva}
-                  className="p-3 mb-2 rounded border border-secondary"
-                  style={{ background: 'rgba(255,255,255,0.03)' }}
-                >
-                  <div className="d-flex justify-content-between gap-2">
+              {reservations.map((item) => {
+                const tieneAsientos = Array.isArray(item.asientos) && item.asientos.length > 0;
+                const tieneHorario = item.selectedTime && !item.selectedTime.startsWith('Asientos:');
 
-                    <div>
-                      <div className="fw-bold text-light mb-2">
-                        🎬 {item.title}
+                return (
+                  <div
+                    key={item.idReserva}
+                    className="p-3 mb-2 rounded border border-secondary"
+                    style={{ background: 'rgba(255,255,255,0.03)' }}
+                  >
+                    <div className="d-flex justify-content-between gap-2">
+                      <div>
+                        <div className="fw-bold text-light mb-1">
+                          🎬 {item.title || item.pelicula}
+                        </div>
+
+                        {/* Detalle de Asientos */}
+                        {tieneAsientos && (
+                          <div className="small text-secondary mb-1">
+                            🎟️ Asientos: <strong className="text-info">{item.asientos.join(', ')}</strong>
+                          </div>
+                        )}
+
+                        {/* Detalle de Horario */}
+                        {tieneHorario && (
+                          <div className="small text-secondary mb-1">
+                            🕒 Horario: <strong className="text-light">{item.selectedTime}</strong>
+                          </div>
+                        )}
+
+                        {/* Fallback si no tiene asientos ni horario formal */}
+                        {!tieneAsientos && !tieneHorario && item.selectedTime && (
+                          <div className="small text-secondary mb-1">
+                            🎟️ Detalle: <strong className="text-light">{item.selectedTime}</strong>
+                          </div>
+                        )}
+
+                        <div className="text-warning fw-bold mt-1">
+                          ${(item.price || item.total || 0).toLocaleString('es-CL')}
+                        </div>
                       </div>
 
-                      <div className="small text-secondary mb-1">
-                        🕒 Horario: {item.selectedTime}
-                      </div>
-
-                      <div className="text-warning fw-bold">
-                        ${item.price?.toLocaleString('es-CL')}
-                      </div>
+                      <button
+                        className="btn btn-sm btn-outline-danger align-self-start"
+                        title="Eliminar reserva"
+                        onClick={() => onRemoveReservation(item.idReserva)}
+                      >
+                        ✕
+                      </button>
                     </div>
-
-                    <button
-                      className="btn btn-sm btn-outline-danger align-self-start"
-                      title="Eliminar reserva"
-                      onClick={() => onRemoveReservation(item.idReserva)}
-                    >
-                      ✕
-                    </button>
-
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* Total */}
             <div className="border-top border-secondary pt-3">
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <div>
-                  <small className="text-secondary d-block">
-                    Total
-                  </small>
-                  <span className="fw-bold text-light">
-                    Total a pagar
-                  </span>
+                  <small className="text-secondary d-block">Total</small>
+                  <span className="fw-bold text-light">Total a pagar</span>
                 </div>
 
                 <span className="fs-4 fw-bold text-warning">
@@ -125,7 +142,6 @@ function ReservationCart({ reservations, onRemoveReservation, onCheckout }) {
             </div>
           </>
         )}
-
       </div>
     </div>
   );

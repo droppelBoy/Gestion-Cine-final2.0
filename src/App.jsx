@@ -43,15 +43,13 @@ function App() {
     setSelectedMovie(null);
   };
 
+  // Conectar la selección de horario directamente con el mapa de asientos
   const handleBookShowtime = (movie, time) => {
-    const newReservation = {
-      idReserva: Date.now(),
-      title: movie.title,
-      price: movie.price || 4500,
-      selectedTime: time
-    };
-    setReservations((prev) => [...prev, newReservation]);
     setSelectedMovie(null);
+    setPeliculaParaReservar({
+      ...movie,
+      horarioElegido: time
+    });
   };
 
   const handleRemoveReservation = (idReserva) => {
@@ -105,7 +103,10 @@ function App() {
                     <MovieCard
                       movie={movie}
                       onViewDetail={handleViewDetail}
-                      onSelectSeats={(pelicula) => setPeliculaParaReservar(pelicula)}
+                      onSelectSeats={(pelicula) => setPeliculaParaReservar({
+                        ...pelicula,
+                        horarioElegido: pelicula.horarioElegido || '19:00'
+                      })}
                     />
                   </div>
                 ))}
@@ -251,12 +252,12 @@ function App() {
               price: total,
               total: total,
               asientos: asientos,
-              selectedTime: null,
+              selectedTime: peliculaParaReservar.horarioElegido || '19:00',
               fecha: new Date().toLocaleDateString('es-CL')
             };
             setReservations((prev) => [...prev, nuevaReserva]);
             setPeliculaParaReservar(null);
-            alert(`¡Reserva confirmada con éxito!\nPelícula: ${nuevaReserva.title}\nAsientos: ${asientos.join(', ')}\nTotal: $${total.toLocaleString('es-CL')}`);
+            alert(`¡Reserva confirmada con éxito!\nPelícula: ${nuevaReserva.title}\nHorario: ${nuevaReserva.selectedTime}\nAsientos: ${asientos.join(', ')}\nTotal: $${total.toLocaleString('es-CL')}`);
           }}
         />
       )}
