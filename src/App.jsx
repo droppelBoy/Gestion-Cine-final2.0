@@ -5,6 +5,7 @@ import SearchBar from './components/SearchBar';
 import MovieCard from './components/MovieCard';
 import MovieDetail from './components/MovieDetail';
 import ReservationCart from './components/ReservationCart';
+import SeatPicker from './SeatPicker';
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
   const [search, setSearch] = useState('');
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [peliculaParaReservar, setPeliculaParaReservar] = useState(null);
 //Reservas leidas desde el localstorge
    const [reservations, setReservations] = useState(() => {
   const saved = localStorage.getItem('cine_reservations');
@@ -66,6 +68,7 @@ function App() {
     const genreMatch = movie?.genre?.toLowerCase().includes(search.toLowerCase());
     return titleMatch || genreMatch;
   });
+  
 
   return (
  
