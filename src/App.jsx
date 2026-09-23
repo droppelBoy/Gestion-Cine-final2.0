@@ -251,7 +251,7 @@ function App() {
               price: total,
               total: total,
               asientos: asientos,
-              selectedTime: `Asientos: ${asientos.join(', ')}`,
+              selectedTime: null,
               fecha: new Date().toLocaleDateString('es-CL')
             };
             setReservations((prev) => [...prev, nuevaReserva]);
