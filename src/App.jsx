@@ -272,6 +272,7 @@ function App() {
   <p className="text-secondary small mb-0">
     © 2026 CineStar · Todos los derechos reservados
   </p>
+
 </footer>
 
         {selectedMovie && (
@@ -279,6 +280,25 @@ function App() {
             movie={selectedMovie}
             closeDetail={handleCloseDetail}
             bookShowtime={handleBookShowtime}
+          />
+        )}
+
+        {peliculaParaReservar && (
+          <SeatPicker
+            pelicula={peliculaParaReservar}
+            onCancelar={() => setPeliculaParaReservar(null)}
+            onConfirmarReserva={(asientos, total) => {
+              const nuevaReserva = {
+                idReserva: Date.now(),
+                pelicula: peliculaParaReservar.title,
+                asientos: asientos,
+                total: total,
+                fecha: new Date().toLocaleDateString('es-CL')
+              };
+              setReservations((prev) => [...prev, nuevaReserva]);
+              setPeliculaParaReservar(null);
+              alert(`¡Reserva confirmada con éxito!\nPelícula: ${nuevaReserva.pelicula}\nAsientos: ${asientos.join(', ')}\nTotal: $${total.toLocaleString('es-CL')}`);
+            }}
           />
         )}
       </div>

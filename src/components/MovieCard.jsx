@@ -46,18 +46,23 @@ function MovieCard({ movie, onViewDetail, onSelectSeats }) {
           </span>
         </div>
 
-        <button
-          className="btn btn-outline-danger mt-auto w-100 fw-semibold"
-          onClick={() => onViewDetail(movie)}
-        >
+        <div className="mt-auto d-flex flex-column gap-2">
+          <button
+            type="button"
+            className="btn btn-outline-light w-100 fw-semibold"
+            onClick={() => onViewDetail(movie)}
+          >
+            Ver Detalles y Horarios
+          </button>
+
           <button 
-  className="btn btn-danger w-100 mt-2 fw-bold"
-  onClick={() => onSelectSeats(movie)}
->
-  🎟️ Seleccionar Asientos
-</button>
-          Ver Detalles y Horarios
-        </button>
+            type="button"
+            className="btn btn-danger w-100 fw-bold"
+            onClick={() => onSelectSeats(movie)}
+          >
+            🎟️ Seleccionar Asientos
+          </button>
+        </div>
       </div>
     </div>
   );
