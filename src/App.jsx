@@ -240,27 +240,31 @@ function App() {
         />
       )}
 
-      {peliculaParaReservar && (
-        <SeatPicker
-          pelicula={peliculaParaReservar}
-          onCancelar={() => setPeliculaParaReservar(null)}
-          onConfirmarReserva={(asientos, total) => {
-            const nuevaReserva = {
-              idReserva: Date.now(),
-              title: peliculaParaReservar.title || peliculaParaReservar.titulo,
-              pelicula: peliculaParaReservar.title || peliculaParaReservar.titulo,
-              price: total,
-              total: total,
-              asientos: asientos,
-              selectedTime: peliculaParaReservar.horarioElegido || '19:00',
-              fecha: new Date().toLocaleDateString('es-CL')
-            };
-            setReservations((prev) => [...prev, nuevaReserva]);
-            setPeliculaParaReservar(null);
-            alert(`¡Reserva confirmada con éxito!\nPelícula: ${nuevaReserva.title}\nHorario: ${nuevaReserva.selectedTime}\nAsientos: ${asientos.join(', ')}\nTotal: $${total.toLocaleString('es-CL')}`);
-          }}
-        />
-      )}
+     {peliculaParaReservar && (
+  <SeatPicker
+    pelicula={peliculaParaReservar}
+    onCancelar={() => setPeliculaParaReservar(null)}
+    onConfirmarReserva={(asientos, total, horarioSeleccionado) => {
+      const nuevaReserva = {
+        idReserva: Date.now(),
+        title: peliculaParaReservar.title || peliculaParaReservar.titulo,
+        pelicula: peliculaParaReservar.title || peliculaParaReservar.titulo,
+        price: total,
+        total: total,
+        asientos: asientos,
+        selectedTime: horarioSeleccionado,
+        fecha: new Date().toLocaleDateString('es-CL')
+      };
+
+      setReservations((prev) => [...prev, nuevaReserva]);
+      setPeliculaParaReservar(null);
+
+      alert(
+        `¡Reserva confirmada con éxito!\nPelícula: ${nuevaReserva.title}\nHorario: ${horarioSeleccionado}\nAsientos: ${asientos.join(', ')}\nTotal: $${total.toLocaleString('es-CL')}`
+      );
+    }}
+  />
+)}
     </div>
   );
 }
