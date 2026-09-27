@@ -59,9 +59,16 @@ function MovieDetail({ movie, closeDetail }) {
                   📖 Sinopsis
                 </h5>
 
-                <p className="text-secondary">
-                  {movie.synopsis}
-                </p>
+                <p
+  className="mb-0"
+  style={{
+    color: '#d1d5db',
+    lineHeight: '1.7',
+    fontSize: '1rem'
+  }}
+>
+  {movie.synopsis}
+</p>
 
                 <div className="mt-auto pt-3 border-top border-secondary">
                   <small className="text-secondary d-block">
