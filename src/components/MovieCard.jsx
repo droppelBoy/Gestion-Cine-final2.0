@@ -57,7 +57,7 @@ function MovieCard({ movie, onViewDetail, onSelectSeats }) {
             className="btn btn-outline-light w-100 fw-semibold"
             onClick={() => onViewDetail && onViewDetail(movie)}
           >
-            Ver Detalles y Horarios
+            Ver Detalles
           </button>
 
           <button 
