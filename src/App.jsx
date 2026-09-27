@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchMovies } from './api';
+import { fetchMovies } from './api/movies';
 import SearchBar from './components/SearchBar';
 import MovieCard from './components/MovieCard';
 import MovieDetail from './components/MovieDetail';
