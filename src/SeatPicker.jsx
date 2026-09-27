@@ -249,7 +249,7 @@ const SeatPicker = ({ pelicula, onConfirmarReserva, onCancelar }) => {
                 )
               }
             >
-              Confirmar Reserva
+              Agregar a Mis Reservas
             </button>
           </div>
         </div>
